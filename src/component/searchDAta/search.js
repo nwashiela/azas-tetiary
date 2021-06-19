@@ -8,19 +8,31 @@ import Footer from "../../component/footer/footer"
 import { Grid,TextField} from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
-function DAtaSearch() {
+function DataSearch() {
   const [institutions, setInstitutions] = useState([]);
   const [thisquery,setQuery] = useState("")
   const checkAndSync = async () => {
+    
     if (app.checkIfCanSync()) {
       const response = await cms.getAllInstitutions();
+      console.log(response)
       setInstitutions(response);
+      
       return;
+
     }
-    const response = JSON.parse(window.localStorage.getItem("institutions"));
+   
+    const responseString = window.localStorage.getItem("institutions") 
+    
+    const response = responseString ? JSON.parse(responseString): []
+    console.log(response)
     setInstitutions(response);
   };
   useEffect(() => checkAndSync(), []);
+
+
+ 
+
 
   function searchRow(rows){
     return rows.filter(
@@ -66,4 +78,4 @@ function DAtaSearch() {
     </div>
   );
 }
-export default DAtaSearch;
+export default DataSearch;

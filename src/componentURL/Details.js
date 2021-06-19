@@ -85,7 +85,7 @@ import cms from "../component/Api/cms";
 function Details({ match }) {
   const { id } = useParams();
   const [institutions, setInstitutions] = useState([]);
-
+console.log(institutions)
   const checkAndSync = async () => {
     if (app.checkIfCanSync()) {
       const response = await cms.getAllInstitutions();
@@ -93,35 +93,22 @@ function Details({ match }) {
       return;
     }
     const response = JSON.parse(window.localStorage.getItem("institutions"));
+    
     const det = response.find((x) => x.id === `${id}`);
     setInstitutions(det);
-    // console.log(det);
+ 
   };
   useEffect(() => checkAndSync());
 
   return (
     <div>
 
-      {/* {institutions.map((item) => {
-        return (
-          <div key={item.id}>
-            <div>
-              <img src={item.photo.url} alt="" />
-            </div>
-            <div>
-              <h1>{item.name}</h1>
-              <h2>{item.province}</h2>
-              <p>{item.website}</p>
-            </div>
-          </div>
-        );
-      })} */}
       <h1>{institutions.name}</h1>
       <h3>{institutions.province}</h3>
       <h5>{institutions.website}</h5>
       <h6>{institutions.id}</h6>
-      {/* {console.log(institutions.photo[0])} */}
-      {/* <img src={institutions.photo.url} alt="" /> */}
+      <h6>{institutions.classification}</h6>
+      <img src={institutions.photo.url}></img>
     </div>
   );
 }

@@ -22,7 +22,7 @@ const getAllInstitutions = async () => {
     data: {
       data: { institutions },
     },
-  } = await axios.get(
+  } = await axios.post(
     "https://api-eu-central-1.graphcms.com/v2/cko2rdehh09fg01yz05vz5eo2/master",
     { query: GET_ALL_INSTITUTIONS_QUERY }
   );

@@ -15,7 +15,8 @@ function DisplaySearch() {
       setInstitutions(response);
       return;
     }
-    const response = JSON.parse(window.localStorage.getItem("institutions"));
+    const responseString = window.localStorage.getItem("institutions") 
+    const response = responseString ? JSON.parse(responseString): []
     setInstitutions(response);
   };
   useEffect(() => checkAndSync(), []);
@@ -25,6 +26,8 @@ function DisplaySearch() {
   const goToDetails = (id) => {
     history.push(`/componentURL/${id}`);
   };
+
+  
 
   return (
     <div>
@@ -43,7 +46,7 @@ function DisplaySearch() {
               <Grid>
                 <Typography variant="h5">
                   <h1>{name}</h1>
-                  <p>{id}</p>
+                  {/* <p>{id}</p> */}
                 </Typography>
                 <h2>{province}</h2>
                 <Link to={`/componentURL/${id}`}>View</Link>
