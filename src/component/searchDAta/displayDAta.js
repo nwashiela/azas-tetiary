@@ -22,17 +22,12 @@ function DisplaySearch() {
   useEffect(() => checkAndSync(), []);
 
   const history = useHistory();
-  // const navigateTo = () => history.push("/componentURL");
-  const goToDetails = (id) => {
-    history.push(`/componentURL/${id}`);
-  };
 
-  
 
   return (
     <div>
-      {institutions.map(({ id, name, province, photo }) => (
-        <Grid item onClick={() => goToDetails(id)} style={{ padding: "0.8rem" }}>
+      {institutions.map(({ id, name,website, photo }) => (
+        <Grid item style={{ padding: "0.8rem" }}>
           <Paper variant="outlined">
             <Grid style={{ display: "flex" }}>
               <Grid>
@@ -48,8 +43,9 @@ function DisplaySearch() {
                   <h1>{name}</h1>
                   {/* <p>{id}</p> */}
                 </Typography>
-                <h2>{province}</h2>
-                <Link to={`/componentURL/${id}`}>View</Link>
+                <a href={website} target="_blank">{website}</a>
+                
+                {/* <Link to={}>View</Link> */}
               </Grid>
             </Grid>
           </Paper>
@@ -59,3 +55,8 @@ function DisplaySearch() {
   );
 }
 export default DisplaySearch;
+
+  // const navigateTo = () => history.push("/componentURL");
+  // const goToDetails = (id) => {
+    // history.push(`/componentURL/${id}`);
+  // };
