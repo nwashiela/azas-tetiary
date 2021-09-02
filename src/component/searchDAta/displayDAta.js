@@ -4,7 +4,7 @@ import app from "../../component/Api/app";
 import cms from "../../component/Api/cms";
 
 import { Grid, Typography, Paper } from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
+// import {  useHistory } from "react-router-dom";
 
 function DisplaySearch() {
   const [institutions, setInstitutions] = useState([]);
@@ -21,7 +21,7 @@ function DisplaySearch() {
   };
   useEffect(() => checkAndSync(), []);
 
-  const history = useHistory();
+  // const history = useHistory();
 
 
   return (
